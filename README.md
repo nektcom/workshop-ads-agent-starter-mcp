@@ -42,6 +42,7 @@ Passo a passo dos dois em [`SETUP.md`](./SETUP.md).
   agents/ads-agent.md         # o assistente de ads (personalidade + regras de operação)
   skills/                     # módulos que ensinam o assistente a fazer cada coisa
     nekt-mcp-data/            # como puxar dado real via MCP (SQL pronto pras perguntas comuns)
+    metrics-foundation/       # tabelas consolidadas + camada semântica + regras de decisão (não achismo)
     ads-gateway-publish/      # como criar/operar anúncio via MCP gateway (sem credencial)
     ads-testing-structure/    # COMO testar criativo sem queimar dinheiro (a lição mais cara)
     ads-attribution/          # de qual canal veio o cliente (sem se enganar com last-click)

@@ -24,6 +24,9 @@ O servidor `nekt` expõe ferramentas pra **descobrir e consultar** os dados. O f
 
 > Os nomes exatos das ferramentas aparecem quando o MCP está conectado. Sempre confira o schema real antes de afirmar um número — nomes de tabela/coluna variam por conta.
 
+## Prefira a fundação canônica a SQL solto
+Antes de escrever uma query nova, veja se a resposta já mora numa **tabela consolidada** (ex: `ads_scorecard`, `ads_performance`) ou numa **métrica da camada semântica** da Nekt. Peça o **contexto semântico** ao MCP — ele traz fórmula/fonte/gotcha da métrica. SQL ad-hoc só pra exploração; para pergunta recorrente, a resposta vira tabela/métrica canônica (ver skill `metrics-foundation`). Isso evita o erro clássico de consultar UMA fonte e concluir errado.
+
 ## Regra de ouro: nunca invente número
 Ordem de preferência pra qualquer dado:
 1. **MCP da Nekt** (SQL sobre as fontes do usuário).
