@@ -9,7 +9,7 @@ Dados e operação de anúncios acontecem tudo via **MCP da Nekt**: SQL sobre su
 [![Built with Claude](https://img.shields.io/badge/Built%20with-Claude-D97757)](https://claude.ai/code)
 [![MCP](https://img.shields.io/badge/MCP-Nekt-000000)](https://nekt.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-2ea44f)](./LICENSE)
-[![PRs welcome](https://img.shields.io/badge/PRs-welcome-blue)](#contribuindo)
+[![Use this template](https://img.shields.io/badge/Use%20this-template-8250df)](https://github.com/nektcom/workshop-ads-agent-starter-mcp/generate)
 
 </div>
 
@@ -26,6 +26,7 @@ Destilado de meses operando os próprios ads da [Nekt](https://nekt.com) — as 
 - [Começando em 3 passos](#começando-em-3-passos)
 - [As lições embutidas](#as-lições-embutidas-o-diferencial)
 - [Segurança](#segurança)
+- [É seu — faça o fork](#é-seu--faça-o-fork)
 - [Créditos](#créditos)
 
 ---
@@ -97,9 +98,9 @@ Isto não é conselho genérico de internet. Cada skill carrega uma lição que 
 
 Projetado pra **não ter credencial nenhuma no repo** (auth é OAuth do MCP). Antes de forkar/publicar, rode o checklist de [`SECURITY.md`](./SECURITY.md) — inclui um `git grep` que caça segredos e um lembrete de revisar `knowledge/` (dado de negócio, nunca token/PII).
 
-## Contribuindo
+## É seu — faça o fork
 
-PRs bem-vindos. Ideias: mais skills (novos canais, novas lições), exemplos de `knowledge/` pra outros tipos de produto, um `COWORK_SETUP.md` dedicado. Abra uma issue ou mande um PR.
+Este é um **starter pra você clonar e adaptar**, não um projeto pra contribuir de volta. Clique em **[Use this template](https://github.com/nektcom/workshop-ads-agent-starter-mcp/generate)** (ou dê um fork), troque o `knowledge/` pelo seu produto, ajuste as skills pro seu contexto e deixe do seu jeito. O objetivo é ele virar **o SEU assistente**, não uma base compartilhada.
 
 ## Créditos
 
