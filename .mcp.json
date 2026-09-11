@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "nekt": {
+      "type": "http",
+      "url": "https://mcp.nekt.com/mcp"
+    }
+  },
+  "_comment": "MCP da Nekt: consome seus dados (SQL sobre as fontes que você conectou na Nekt) E opera as plataformas de ads (criar/pausar/ler via gateway). A autenticação é por OAuth no primeiro uso — NÃO tem token neste arquivo, nada de segredo aqui. No Claude Code, rode /mcp pra fazer o login e confirmar que 'nekt' está conectado. No Cowork, conecte em Configurações → Conectores. Pré-requisito: conta em nekt.com com pelo menos 1 fonte conectada."
+}

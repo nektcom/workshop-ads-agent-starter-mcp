@@ -1,0 +1,32 @@
+# Este projeto é MCP-first: NÃO deveria existir credencial nenhuma aqui.
+# A auth do MCP é por OAuth (fica no cliente, não no repo). Mesmo assim, blindamos:
+
+# Variáveis de ambiente / segredos (caso alguém adicione)
+.env
+.env.*
+!.env.example
+*.env
+secrets/
+.secrets/
+credentials/
+.credentials/
+
+# Tokens / chaves de qualquer plataforma
+*.pem
+*.key
+*_token.txt
+*_token.json
+access_token*
+refresh_token*
+service-account*.json
+service_account*.json
+client_secret*.json
+
+# Config local do Claude que pode ter conteúdo sensível
+.claude/settings.local.json
+
+# Sistema
+.DS_Store
+__pycache__/
+*.pyc
+node_modules/
