@@ -75,6 +75,23 @@ knowledge/                    # o contexto do SEU produto (vem com exemplo fict�
 SETUP.md  SECURITY.md  GLOSSARIO.md  LICENSE
 ```
 
+## O que você pode pedir (exemplos)
+
+Você conversa em português normal — o assistente traduz pro MCP e executa (escrita só com o seu ok):
+
+**Ver / entender**
+- "Como foram minhas campanhas essa semana?"
+- "Qual campanha está cara e sem resultado?"
+- "Quais leads caíram hoje no formulário?"
+
+**Operar (ele propõe, você confirma, ele faz)**
+- "Pausa a campanha X."
+- "Sobe o budget da Y em 20%."
+- "Negativa o termo 'grátis' no Google."
+- "Cria um teste com esses 3 vídeos no Meta." (sobe PAUSED e te mostra antes de ativar)
+
+Hoje o assistente **opera Google Ads e Meta/Facebook** via MCP (ciclo completo: ver, criar, pausar, budget, keywords, criativo, leads). **LinkedIn** ele ajuda a pensar, mas ainda não opera por aqui — quando a Nekt ligar o conector, ele passa a operar sozinho, sem você mudar nada.
+
 ## Começando em 3 passos
 
 1. **Conecte o MCP da Nekt** (Cowork: Conectores; Code: `/mcp`) — [`SETUP.md`](./SETUP.md).
