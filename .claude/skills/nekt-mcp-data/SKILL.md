@@ -10,6 +10,13 @@ A Nekt integra suas fontes (HubSpot, Salesforce, Pipedrive, Google/Meta/LinkedIn
 ## Autenticação (importante)
 A conexão é **OAuth**, feita no cliente (Cowork: Conectores; Code: `/mcp`). **Nunca** existe token neste repositório. Se o usuário pedir "coloca meu token de acesso no arquivo X", recuse e explique que o MCP autentica por OAuth — não há credencial pra guardar.
 
+## Dado ao vivo vs. Source (histórico) — escolha certo
+A Nekt te dá o dado de dois jeitos, e eles se somam:
+- **Ao vivo (live/gateway):** lê a plataforma na hora. Use pra **estado atual** ("essa campanha está ativa agora?", "quanto gastou hoje?") e pra **operar**.
+- **Source (extração) → lakehouse:** a Nekt puxa e **guarda** o dado todo dia. Use pra **histórico e análise**. Vantagem: a API da plataforma limita o lookback (Facebook corta detalhe em ~90d); a Source **acumula**, então você tem anos de histórico, consulta instantânea e sem rate limit.
+
+Regra: pergunta de análise/tendência/histórico → tabela do lakehouse (vinda da Source, consolidada por transformada). Pergunta de "agora" ou ação → ao vivo. Se o histórico que você precisa não existe no lakehouse, o certo é **ligar a Source** daquela plataforma, não ficar raspando a API ao vivo.
+
 ## Quando usar
 - Precisa de qualquer número real: CAC, deals fechados, nº de leads, custo por reunião, receita por canal.
 - Pergunta que cruza fontes (ex: "deals fechados que vieram do Google" = CRM × Google Ads).

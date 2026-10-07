@@ -90,7 +90,30 @@ Você conversa em português normal — o assistente traduz pro MCP e executa (e
 - "Negativa o termo 'grátis' no Google."
 - "Cria um teste com esses 3 vídeos no Meta." (sobe PAUSED e te mostra antes de ativar)
 
-Hoje o assistente **opera Google Ads e Meta/Facebook** via MCP (ciclo completo: ver, criar, pausar, budget, keywords, criativo, leads). **LinkedIn** ele ajuda a pensar, mas ainda não opera por aqui — quando a Nekt ligar o conector, ele passa a operar sozinho, sem você mudar nada.
+Hoje o assistente **opera Google Ads e Meta/Facebook** via MCP (ciclo completo: ver, criar, pausar, budget, keywords, criativo, leads). **LinkedIn** ele já **lê** via MCP (campanhas, performance, targeting — dá pra analisar); a **operação** (criar/pausar) está sendo liberada no conector e passa a funcionar sozinha quando pronta, sem você mudar nada.
+
+## A base de dados: consolide com transformadas, defina na camada semântica
+
+O assistente é tão bom quanto o dado que ele enxerga. Antes de pedir análise séria, monte a **fundação** na Nekt — é o que separa "número que bate sempre" de "cada resposta uma conta diferente". São 3 passos, e você faz **conversando com o assistente** (ele usa as ferramentas da Nekt via MCP):
+
+**1. Conecte suas fontes na Nekt — e prefira EXTRAIR (Source), não só ler ao vivo.**
+Tem dois jeitos de o dado chegar: o MCP lê **ao vivo** (ótimo pra "o que está acontecendo agora" e pra operar), e a **Source** (conector de extração da Nekt) **puxa e GUARDA** os dados no seu lakehouse. Pra fundação de análise, use a **Source** — ela te dá vantagens que o ao-vivo não dá:
+- **Histórico completo e durável.** As APIs de anúncio limitam o quanto você olha pra trás (o Facebook, por exemplo, corta boa parte do detalhe em ~90 dias). A Source extrai todo dia e **acumula** — você mantém anos de histórico, mesmo do que a plataforma já não devolve.
+- **Rápido e sem estourar limite.** Consultar uma tabela no seu lakehouse é instantâneo e não bate no rate limit da plataforma a cada pergunta.
+- **Base estável pras transformadas.** A consolidação (passo 2) roda sobre dado que não muda debaixo dos pés.
+
+Regra prática: **Source pra histórico e análise; MCP ao vivo pra estado atual e operação.** Elas se somam.
+
+**2. Consolide com TRANSFORMADAS — é o passo que mais importa.**
+Uma *transformada* é uma receita que pega esses dados crus e espalhados e monta uma **tabela limpa e única**. Exemplo: juntar o gasto do Google + Meta + LinkedIn com os deals fechados do CRM numa só tabela `ads_performance` (investimento, leads, reuniões, vendas, custo por reunião — por campanha, por dia).
+Por que importa: **sem isso, o assistente junta as fontes na mão a cada pergunta — e erra nos cantos** (consulta UM formulário e perde metade dos leads, soma lead duplicado, atribui ao canal errado). Com a transformada, a conta é feita **uma vez, certa, e roda todo dia sozinha**; o assistente só **lê a tabela pronta**.
+Regra: **pergunta que se repete vira transformada, não query nova.** Peça ao assistente: *"monta uma transformada que consolida meu gasto de ads com os deals do CRM"* — ele usa as ferramentas de transformação da Nekt pra criar e rodar.
+
+**3. Defina os números na CAMADA SEMÂNTICA.**
+Com a tabela pronta, defina cada métrica **uma vez, canonicamente**: o que É um "lead B2B" (email corporativo), uma "reunião" (agendada menos no-show), a "atribuição" (por UTM do toque pago, nunca pelo campo de origem do CRM) — fórmula + fonte + o "pega-ratão" de cada uma. Isso vira a **camada semântica** da Nekt.
+Por que importa: o número **não muda dependendo de quem perguntou**. O assistente **puxa a definição** em vez de inventar a conta; humano e agente usam a mesma régua; e cada "pega-ratão" novo que você descobre vira parte da camada — não folclore que se perde no Slack.
+
+**O resultado:** fontes cruas → **transformada consolida** → **camada semântica define** → o assistente responde rápido, barato e **sempre com o mesmo número certo**. O passo a passo pro assistente está na skill [`metrics-foundation`](./.claude/skills/metrics-foundation/SKILL.md).
 
 ## Começando em 3 passos
 

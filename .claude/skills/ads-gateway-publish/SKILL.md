@@ -1,6 +1,6 @@
 ---
 name: ads-gateway-publish
-description: Como LER e OPERAR anúncios (Google Ads e Meta/Facebook) via MCP gateway da Nekt — sem credencial, auth por OAuth. Traz o mapa das ferramentas disponíveis hoje, como descobrir os nomes exatos (são por-org), os defaults seguros (PAUSED primeiro, sem signup) e a regra de só executar escrita com aprovação explícita. Use quando o usuário quiser ver, subir, pausar ou alterar algo. (LinkedIn ainda não tem conector via MCP.)
+description: Como LER e OPERAR anúncios via MCP gateway da Nekt — sem credencial, auth por OAuth. Google Ads e Meta/Facebook operam ciclo completo; LinkedIn já LÊ via MCP (escrita liberando). Traz o mapa das ferramentas disponíveis hoje, como descobrir os nomes exatos (são por-org), os defaults seguros (PAUSED primeiro, sem signup) e a regra de só executar escrita com aprovação explícita. Use quando o usuário quiser ver, subir, pausar ou alterar algo.
 ---
 
 # ads-gateway-publish
@@ -37,8 +37,10 @@ Se uma ferramenta que você espera não aparecer, rode `discover_live_tools` UMA
 - **Criar:** campanha, conjunto, anúncio de **imagem / link / vídeo**, **lead form**; upload de imagem e de vídeo pra biblioteca.
 - **Operar:** ativar/pausar campanha, conjunto ou anúncio; atualizar conjunto; **atualizar o criativo** de um anúncio; **duplicar** campanha / conjunto / anúncio / lead form; deletar objeto.
 
-### LinkedIn — ainda NÃO via MCP
-Não há conector de LinkedIn Ads no gateway hoje. Quando a Nekt ligar, ele aparece sozinho no `discover_live_tools`. Até lá, não prometa operar LinkedIn por aqui.
+### LinkedIn — LEITURA via MCP ok, OPERAÇÃO (escrita) ainda liberando
+Já tem conector de LinkedIn Ads no gateway e a **leitura funciona**: listar contas / campaign groups / campanhas / criativos / conversões, performance por campanha e por criativo, e **resolver URNs de targeting** (`find_targeting_urns`). Dá pra o assistente ANALISAR LinkedIn via MCP hoje.
+
+As ferramentas de **escrita** existem (criar campanha / sponsored content / **Thought Leader Ad** / InMail, set targeting, pausar/ativar campanha e criativo, upload de mídia) **mas podem voltar 403 de permissão** até a conta do cliente ter a escrita liberada no app do conector (Advertising API). Se um write der 403, não é argumento errado — é permissão: avise o cliente a liberar na Nekt, não fique retentando.
 
 ### Audiências e sinal de conversão (via destinations da Nekt)
 Além do gateway de operação, a Nekt tem **destinations** pra: mandar uma audiência (lista de clientes/leads) pro Facebook Custom Audiences, mandar eventos de conversão de volta (Facebook Conversions API / CAPI — ensina o Meta a buscar quem CONVERTE, não só quem clica), e Customer Match no Google. Use quando o usuário quiser "achar mais gente parecida com quem fecha" ou "dizer pro Facebook quais leads foram bons".

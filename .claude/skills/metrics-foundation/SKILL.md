@@ -35,6 +35,17 @@ Decisão de ads não deveria depender do "feeling" do assistente naquele dia. En
 
 O LLM **aplica** a regra e explica citando o número da tabela canônica; ele não improvisa o critério. Regra determinística > julgamento solto, porque é consistente, auditável e não erra por cansaço/contexto.
 
+## Como o assistente constrói isso (via MCP, passo a passo)
+Você não monta na mão — o assistente usa as ferramentas da Nekt pelo MCP:
+
+1. **Ver o que já existe primeiro.** Liste as tabelas e as camadas (layers) da conta via MCP. Se `ads_performance` (ou equivalente) já existe, **use** — não recrie. Peça o schema real antes de escrever qualquer coisa.
+2. **Criar/editar a transformada.** Use as ferramentas de transformação do MCP (criar/atualizar a transformada — é código Python/SQL que a Nekt roda no lakehouse — e rodar o pipeline). Comece pela **`ads_performance`**: uma transformada que junta o gasto por plataforma (Google/Meta/LinkedIn) com os deals do CRM, no grão **campanha × dia**, com merge incremental.
+3. **Materializar + conferir.** Rode o pipeline, leia algumas linhas da tabela e confirme que os números batem com a plataforma **antes** de confiar. Não assuma que o join ficou certo.
+4. **Definir na camada semântica.** Puxe o **contexto semântico** (a definição canônica) via MCP; se a métrica ainda não existe lá, **crie o documento de contexto** com fórmula + fonte + filtros + o "pega-ratão". Toda métrica que o cliente usa pra DECIDIR vira documento aqui.
+5. **Daí pra frente:** o assistente **só lê** a tabela consolidada + a definição semântica. Query crua fica só pra exploração pontual, nunca pra decisão recorrente.
+
+> Comece pequeno: `ads_performance` + a definição de "custo por reunião" na semântica + as 4 regras de decisão acima. Cresça conforme a operação pedir — não precisa montar tudo de uma vez.
+
 ## Por quê isso importa (a lição)
 Análise ad-hoc mente em transição e em caso de borda (formulário compartilhado, atribuição sobrescrita, criativo sem entrega). Tabela canônica + camada semântica + regra fixa transformam "achismo do dia" em "fato repetível". O assistente fica mais rápido, mais barato e para de errar a mesma conta duas vezes.
 
