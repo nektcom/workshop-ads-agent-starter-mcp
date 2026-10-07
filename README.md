@@ -96,7 +96,13 @@ Hoje o assistente **opera Google Ads e Meta/Facebook** via MCP (ciclo completo: 
 
 O assistente é tão bom quanto o dado que ele enxerga. Antes de pedir análise séria, monte a **fundação** na Nekt — é o que separa "número que bate sempre" de "cada resposta uma conta diferente". São 3 passos, e você faz **conversando com o assistente** (ele usa as ferramentas da Nekt via MCP):
 
-**1. Conecte suas fontes** na Nekt — CRM, Google/Meta/LinkedIn Ads, Stripe, produto. Elas entram **cruas e espalhadas**, cada uma do seu jeito.
+**1. Conecte suas fontes na Nekt — e prefira EXTRAIR (Source), não só ler ao vivo.**
+Tem dois jeitos de o dado chegar: o MCP lê **ao vivo** (ótimo pra "o que está acontecendo agora" e pra operar), e a **Source** (conector de extração da Nekt) **puxa e GUARDA** os dados no seu lakehouse. Pra fundação de análise, use a **Source** — ela te dá vantagens que o ao-vivo não dá:
+- **Histórico completo e durável.** As APIs de anúncio limitam o quanto você olha pra trás (o Facebook, por exemplo, corta boa parte do detalhe em ~90 dias). A Source extrai todo dia e **acumula** — você mantém anos de histórico, mesmo do que a plataforma já não devolve.
+- **Rápido e sem estourar limite.** Consultar uma tabela no seu lakehouse é instantâneo e não bate no rate limit da plataforma a cada pergunta.
+- **Base estável pras transformadas.** A consolidação (passo 2) roda sobre dado que não muda debaixo dos pés.
+
+Regra prática: **Source pra histórico e análise; MCP ao vivo pra estado atual e operação.** Elas se somam.
 
 **2. Consolide com TRANSFORMADAS — é o passo que mais importa.**
 Uma *transformada* é uma receita que pega esses dados crus e espalhados e monta uma **tabela limpa e única**. Exemplo: juntar o gasto do Google + Meta + LinkedIn com os deals fechados do CRM numa só tabela `ads_performance` (investimento, leads, reuniões, vendas, custo por reunião — por campanha, por dia).
