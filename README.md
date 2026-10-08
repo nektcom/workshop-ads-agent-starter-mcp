@@ -90,7 +90,7 @@ Você conversa em português normal — o assistente traduz pro MCP e executa (e
 - "Negativa o termo 'grátis' no Google."
 - "Cria um teste com esses 3 vídeos no Meta." (sobe PAUSED e te mostra antes de ativar)
 
-Hoje o assistente **opera Google Ads e Meta/Facebook** via MCP (ciclo completo: ver, criar, pausar, budget, keywords, criativo, leads). **LinkedIn** ele já **lê** via MCP (campanhas, performance, targeting — dá pra analisar); a **operação** (criar/pausar) está sendo liberada no conector e passa a funcionar sozinha quando pronta, sem você mudar nada.
+Hoje o assistente **opera Google Ads, Meta/Facebook e LinkedIn** via MCP (ciclo completo: ver, criar, pausar, budget, keywords, criativo, leads). Toda escrita sobe PAUSED e espera sua aprovação antes de ativar.
 
 ## A base de dados: consolide com transformadas, defina na camada semântica
 
