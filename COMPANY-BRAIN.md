@@ -74,3 +74,27 @@ E ele é **determinístico onde importa**: "pausar quando custo por reunião > 2
 6. **Cresça pelo erro**: cada vez que ele errar, a pergunta é "qual regra escrita faltou?". Escreva a regra em `brain/`, não só corrija a resposta.
 
 > A regra de ouro: **o LLM orquestra, a regra decide.** O que é critério fica escrito e versionado; o modelo aplica, explica e executa.
+
+---
+
+## Por que a gente montou isso em cima da Nekt
+
+Dá pra montar um Company Brain com planilha, export de CSV e prompt colado? Dá pra começar. Mas 3 dos 5 pilares dependem de uma coisa que o LLM sozinho não tem: **uma base de dados viva, consolidada e com as definições do negócio escritas nela.** É isso que a Nekt é.
+
+| Pilar | O que o cérebro precisa | Como a Nekt resolve |
+|---|---|---|
+| **Sabe o que é ganhar** | ler gasto de ads **e** CRM juntos, ao vivo | conectores prontos (Google, Meta, LinkedIn, HubSpot, Pipedrive, Salesforce, banco do produto) num lakehouse só, lidos pelo agente via **MCP** |
+| **Memória escrita** | definição de venda/lead/cliente num lugar só | **camada semântica**: a métrica é definida uma vez e o agente puxa a definição em vez de inventar a conta |
+| **Mesmo cérebro pra pessoas e agentes** | o número do dashboard = o número do agente | dashboard do time e agente leem a **mesma tabela** consolidada (transformadas que rodam sozinhas todo dia) |
+| **Não desliga** | dado atualizado sem ninguém exportar | pipelines agendados + histórico acumulado (inclusive o que a plataforma de ads já não devolve depois de 90 dias) |
+| **Time usa, não só você** | acesso sem passar token de mão em mão | MCP com **OAuth** e permissão por pessoa: cada um conecta com a própria conta, nada de credencial no repo |
+
+Sem essa base, o agente junta as fontes na mão a cada pergunta e erra nos cantos. Com ela, ele lê o número certo e gasta o tempo decidindo.
+
+**É o que roda a mídia paga da própria Nekt.** Com esse cérebro aumentamos vendas, reuniões, inscritos em workshop e o alcance das contas no LinkedIn.
+
+## Quer montar o seu?
+
+- 📅 **[Fale com o time da Nekt](https://sales.nekt.com/meetings/yan-roger/nekt-vendas?utm_source=github&utm_medium=referral&utm_campaign=company-brain-starter)** pra ver o seu dado plugado num Company Brain.
+- 🤝 **Contrate a Nekt e ganhe 1 hora de mentoria com a [Lupe](https://www.linkedin.com/in/luanapereira02)** pra montar o seu cérebro junto. É só avisar que veio pelo GitHub!
+- 🚀 Ou comece sozinho: **[crie sua conta na Nekt](https://nekt.com/?utm_source=github&utm_medium=referral&utm_campaign=company-brain-starter)**, conecte uma fonte e siga o [`SETUP.md`](./SETUP.md).

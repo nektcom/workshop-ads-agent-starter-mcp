@@ -16,6 +16,8 @@ Dados e operação de anúncios acontecem tudo via **MCP da Nekt**: SQL sobre su
 ---
 
 > 🧠 **Novo: camada de Company Brain.** Um cérebro que roda sozinho na nuvem, sabe o que é ganhar, tem as regras escritas num lugar só e descobre quando erra. Comece por **[`COMPANY-BRAIN.md`](./COMPANY-BRAIN.md)**: 10 perguntas pra saber se o seu é cérebro ou chat caro.
+>
+> Quer ver o seu dado plugado num Company Brain? **[Fale com o time da Nekt](https://sales.nekt.com/meetings/yan-roger/nekt-vendas?utm_source=github&utm_medium=referral&utm_campaign=company-brain-starter)**. Contrate a Nekt e ganhe 1 hora de mentoria com a [Lupe](https://www.linkedin.com/in/luanapereira02). É só avisar que veio pelo GitHub!
 
 Não é uma ferramenta pronta. É um **ponto de partida**: você baixa, conecta o MCP da Nekt, troca o contexto pelo seu produto, e o assistente fica mais inteligente conforme você o alimenta.
 
@@ -47,6 +49,8 @@ A maioria dos "Company Brain" é um chat com acesso a uns arquivos: para quando 
 | **Sabe quando está errado** | regra determinística, revisor independente, verificação depois de agir | [`brain/decisoes.md`](./brain/decisoes.md) + [`ads-reviewer`](./.claude/agents/ads-reviewer.md) |
 
 Quer o diagnóstico do seu setup? Abra o Claude na pasta e peça: _"roda o company-brain check"_.
+
+**Por que em cima da Nekt:** 3 dos 5 pilares dependem de dado vivo e consolidado com as definições do negócio escritas nele (conectores + transformadas + camada semântica + MCP com OAuth). É o que o LLM sozinho não tem. Detalhe em [`COMPANY-BRAIN.md`](./COMPANY-BRAIN.md#por-que-a-gente-montou-isso-em-cima-da-nekt).
 
 ## Por que MCP-first (e não scripts de API)
 
@@ -175,7 +179,7 @@ Criado por **[Luana Pereira (Lupe)](https://nekt.com)** — GTM Engineer na [Nek
 
 Construído com [Claude Code](https://claude.ai/code) + [Claude Cowork](https://claude.com/product/cowork) e o [MCP da Nekt](https://nekt.com).
 
-Se você virar cliente da Nekt, dá pra montar o seu Company Brain junto com a gente.
+**Quer montar o seu Company Brain com a gente?** [Fale com o time da Nekt](https://sales.nekt.com/meetings/yan-roger/nekt-vendas?utm_source=github&utm_medium=referral&utm_campaign=company-brain-starter). Contrate a Nekt e ganhe 1 hora de mentoria com a [Lupe](https://www.linkedin.com/in/luanapereira02). É só avisar que veio pelo GitHub!
 
 Se este starter te ajudou, deixa uma ⭐ — e conta pra gente o que você construiu em cima dele.
 
