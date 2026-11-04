@@ -15,11 +15,14 @@ Dados e operação de anúncios acontecem tudo via **MCP da Nekt**: SQL sobre su
 
 ---
 
+> 🧠 **Novo: camada de Company Brain.** Um cérebro que roda sozinho na nuvem, sabe o que é ganhar, tem as regras escritas num lugar só e descobre quando erra. Comece por **[`COMPANY-BRAIN.md`](./COMPANY-BRAIN.md)**: 10 perguntas pra saber se o seu é cérebro ou chat caro.
+
 Não é uma ferramenta pronta. É um **ponto de partida**: você baixa, conecta o MCP da Nekt, troca o contexto pelo seu produto, e o assistente fica mais inteligente conforme você o alimenta.
 
 Destilado de meses operando os próprios ads da [Nekt](https://nekt.com) — as lições que custaram dinheiro já vêm embutidas nas skills.
 
 ## Índice
+- [Company Brain: cérebro ou chat caro?](#company-brain-cérebro-ou-chat-caro)
 - [Por que MCP-first](#por-que-mcp-first-e-não-scripts-de-api)
 - [Qual caminho escolher](#qual-caminho-escolher)
 - [O que tem aqui](#o-que-tem-aqui)
@@ -30,6 +33,20 @@ Destilado de meses operando os próprios ads da [Nekt](https://nekt.com) — as 
 - [Créditos](#créditos)
 
 ---
+
+## Company Brain: cérebro ou chat caro?
+
+A maioria dos "Company Brain" é um chat com acesso a uns arquivos: para quando você sai, cada prompt tem uma versão da regra, e quem descobre o erro é o cliente. Este repo vem com as 5 peças que separam um do outro:
+
+| Pilar | O que faz | Onde |
+|---|---|---|
+| **Não desliga quando você sai** | rotinas na nuvem, no horário, com log (audit diário, vigia de gasto e de lead, revisão semanal) | [`routines/`](./routines) |
+| **Sabe o que é ganhar** | julga anúncio por custo por reunião lendo gasto + CRM ao vivo, ignora CPL de form | [`brain/regras-do-negocio.md`](./brain/regras-do-negocio.md) |
+| **Tem memória escrita** | venda, lead bom e cliente definidos uma vez; skills apontam, não copiam | [`brain/`](./brain) + [`knowledge/ads-history.md`](./knowledge/ads-history.md) |
+| **Pessoas e agentes com o mesmo cérebro** | mesmo número no dashboard e no agente (camada semântica), dono definido pra cada área | [`metrics-foundation`](./.claude/skills/metrics-foundation/SKILL.md) + [`brain/quem-mexe-em-que.md`](./brain/quem-mexe-em-que.md) |
+| **Sabe quando está errado** | regra determinística, revisor independente, verificação depois de agir | [`brain/decisoes.md`](./brain/decisoes.md) + [`ads-reviewer`](./.claude/agents/ads-reviewer.md) |
+
+Quer o diagnóstico do seu setup? Abra o Claude na pasta e peça: _"roda o company-brain check"_.
 
 ## Por que MCP-first (e não scripts de API)
 
@@ -57,9 +74,18 @@ Passo a passo em **[`SETUP.md`](./SETUP.md)**.
 ## O que tem aqui
 
 ```
+CLAUDE.md                     # carregado sozinho pelo Claude: mapa + como pensar/agir
+COMPANY-BRAIN.md              # o porquê: 10 perguntas, 5 pilares, ordem de montagem
+brain/                        # a constituição (FONTE ÚNICA, skills apontam pra cá)
+  regras-do-negocio.md        # o que é ganhar, lead bom, venda, cliente
+  decisoes.md                 # quando pausar/escalar/alarmar/bloquear, com números
+  quem-mexe-em-que.md         # dono de cada área (pessoas e agentes)
+routines/                     # prompts pra agendar na nuvem: audit diário, vigia, revisão semanal
 .claude/
   agents/ads-agent.md         # o assistente (personalidade + regras de operação)
-  skills/                     # 12 módulos que ensinam o assistente a fazer cada coisa
+  agents/ads-reviewer.md      # revisor independente: barra decisão ruim antes de gastar
+  skills/                     # 13 módulos que ensinam o assistente a fazer cada coisa
+    company-brain/            # diagnóstico: seu setup é cérebro ou chat caro?
     nekt-mcp-data/            # puxar dado real via MCP (SQL pronto)
     metrics-foundation/       # tabelas consolidadas + camada semântica + regras (não achismo)
     ads-gateway-publish/      # criar/operar anúncio via MCP gateway (sem credencial)
@@ -118,9 +144,10 @@ Por que importa: o número **não muda dependendo de quem perguntou**. O assiste
 ## Começando em 3 passos
 
 1. **Conecte o MCP da Nekt** (Cowork: Conectores; Code: `/mcp`) — [`SETUP.md`](./SETUP.md).
-2. **Preencha o `knowledge/`** com o seu produto (vem com o fictício AcmeRH — troque pelo seu).
+2. **Preencha `brain/` e `knowledge/`** com o seu negócio (vem com o fictício AcmeRH — troque pelo seu). Comece por `brain/regras-do-negocio.md`: é o arquivo mais importante.
 3. **Abra o Claude na pasta** e chame `@ads-agent`. Peça algo real:
    > _"Olha meus últimos 30 dias de ads e me diz onde estou queimando dinheiro."_
+4. **Ligue a primeira rotina** ([`routines/audit-diario.md`](./routines/audit-diario.md)) pra ele trabalhar sem você abrir nada.
 
 O assistente lê o contexto, puxa o dado via MCP e responde com base na **sua** realidade — não em achismo. E só sobe/pausa nada com a sua aprovação explícita.
 
@@ -147,6 +174,8 @@ Este é um **starter pra você clonar e adaptar**, não um projeto pra contribui
 Criado por **[Luana Pereira (Lupe)](https://nekt.com)** — GTM Engineer na [Nekt](https://nekt.com), que usa este mesmo esqueleto pra operar a própria mídia paga. As skills são a destilação de meses testando, errando e aprendendo em Google, Meta e LinkedIn Ads.
 
 Construído com [Claude Code](https://claude.ai/code) + [Claude Cowork](https://claude.com/product/cowork) e o [MCP da Nekt](https://nekt.com).
+
+Se você virar cliente da Nekt, dá pra montar o seu Company Brain junto com a gente.
 
 Se este starter te ajudou, deixa uma ⭐ — e conta pra gente o que você construiu em cima dele.
 
