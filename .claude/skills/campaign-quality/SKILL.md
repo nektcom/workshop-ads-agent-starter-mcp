@@ -8,6 +8,8 @@ description: Como medir a qualidade de uma campanha pela métrica CERTA — cust
 CPL de formulário é a métrica que engana mais. Volume alto de lead barato com email pessoal parece ótimo e não vira pipeline. Meça o que vira dinheiro.
 
 ## A métrica norte
+> A definição oficial (meta, teto, o que é lead qualificado, reunião e venda) mora em **`brain/regras-do-negocio.md`**. Se lá diz diferente do que está aqui, **vale `brain/`**.
+
 **Custo por conversão de verdade** — reunião agendada / conta criada / venda — **com qualidade de lead**. Não CPL de form.
 
 - **Lead** = qualquer contato que entrou.

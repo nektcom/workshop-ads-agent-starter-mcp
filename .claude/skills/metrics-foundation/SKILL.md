@@ -26,6 +26,8 @@ Defina cada métrica **UMA vez**, canonicamente, na camada semântica da Nekt �
 Antes de escrever SQL de métrica, **peça o contexto semântico** ao MCP. Se a métrica ainda não existe lá, o certo é **criá-la na camada semântica**, não gerar um SQL solto que só você conhece.
 
 ## 3. Regras determinísticas de decisão (não julgamento aberto)
+> As regras com os números da sua operação moram em **`brain/decisoes.md`**. Os exemplos abaixo explicam o porquê; o que vale é o arquivo.
+
 Decisão de ads não deveria depender do "feeling" do assistente naquele dia. Encode as regras — thresholds explícitos, aplicados igual sempre:
 
 - **Pausar:** custo/reunião > 2× a meta **E** gastou o mínimo pra julgar **E** fora da carência (learning) **E** não é canal de topo (marca) → propor pausa.
